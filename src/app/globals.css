@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #05080e;
+  --bg-secondary: #080c14;
+  --accent-amber: #f59e0b;
+  --accent-orange: #ff6b2b;
+  --accent-cyan: #00d4ff;
+  --parallax-x: 0;
+  --parallax-y: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: #f1f5f9;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.25);
+  color: #ffffff;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05080e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.6);
+}
+
+/* ── 3D DEPTH HIERARCHY SYSTEM (Driven by RAF Mouse Interpolation) ── */
+.perspective-stage {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.depth-layer-bg {
+  transform: translate3d(
+    calc(var(--parallax-x) * 3px),
+    calc(var(--parallax-y) * 3px),
+    -40px
+  );
+  will-change: transform;
+}
+
+.depth-layer-mid {
+  transform: translate3d(
+    calc(var(--parallax-x) * 7px),
+    calc(var(--parallax-y) * 7px),
+    -10px
+  );
+  will-change: transform;
+}
+
+.depth-layer-canvas {
+  transform: perspective(1200px)
+    rotateX(calc(var(--parallax-y) * -1.8deg))
+    rotateY(calc(var(--parallax-x) * 1.8deg))
+    translate3d(
+      calc(var(--parallax-x) * 10px),
+      calc(var(--parallax-y) * 10px),
+      0px
+    );
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.depth-layer-content {
+  transform: translate3d(
+    calc(var(--parallax-x) * 14px),
+    calc(var(--parallax-y) * 14px),
+    25px
+  );
+  will-change: transform;
+}
+
+.depth-layer-foreground {
+  transform: translate3d(
+    calc(var(--parallax-x) * 20px),
+    calc(var(--parallax-y) * 20px),
+    50px
+  );
+  will-change: transform;
+}
+
+/* ── RESTRAINED LUXURY GLASSMORPHISM (Optimized for Integrated GPUs) ── */
+.glass-panel {
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(11, 16, 26, 0.78);
+}
+
+.glass-card {
+  background: rgba(9, 14, 23, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: rgba(13, 20, 32, 0.75);
+}
+
+/* Atmospheric Subtle Mesh Texture */
+.bg-grid-mesh {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Subtle Vignette for Canvas Blending */
+.canvas-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(5, 8, 14, 0) 50%,
+    rgba(5, 8, 14, 0.35) 75%,
+    rgba(5, 8, 14, 0.98) 100%
+  );
+  pointer-events: none;
+}
+
+/* Restrained Editorial Typography Gradients */
+.text-gradient-silver {
+  background: linear-gradient(180deg, #ffffff 10%, #d1d5db 60%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(135deg, #ffffff 20%, #fbbf24 70%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 20%, #38bdf8 70%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card 3D Tilt Utilities */
+.card-3d-wrap {
+  perspective: 800px;
+}
+
+/* Content visibility optimization for offscreen sections */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+/* ── PREFERS REDUCED MOTION SAFETY ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  :root {
+    --parallax-x: 0 !important;
+    --parallax-y: 0 !important;
+  }
+  .depth-layer-bg,
+  .depth-layer-mid,
+  .depth-layer-canvas,
+  .depth-layer-content,
+  .depth-layer-foreground {
+    transform: none !important;
+  }
+}
